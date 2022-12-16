@@ -7,6 +7,10 @@
 /*   Copyright (c) 2006 CASIO COMPUTER CO., LTD.                 */
 /*                                                               */
 /*****************************************************************/
+
+//    generator for quadratic equations
+//    Copyright (C) 2022  Felix Wittwer
+
 #include "fxlib.h"
 #include "MonochromeLib.h"
 #include <stdio.h>

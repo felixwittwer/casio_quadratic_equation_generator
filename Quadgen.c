@@ -7,10 +7,6 @@
 /*   Copyright (c) 2006 CASIO COMPUTER CO., LTD.                 */
 /*                                                               */
 /*****************************************************************/
-
-//    generator for quadratic equations
-//    Copyright (C) 2022  Felix Wittwer
-
 #include "fxlib.h"
 #include "MonochromeLib.h"
 #include <stdio.h>
@@ -151,7 +147,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 
 				PrintXY(1,40, (unsigned char*)"                                                                          ", 0);
 				
-				if(p > 0){
+				if(p >= 0){
 					locate(4,3);
 					Print((unsigned char*)"+");
 					printFloat(24,16,p);	
@@ -162,7 +158,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 
 				if(p < 10 && p > -10){
 					PrintXY(30,16, (unsigned char*)"x   ", 0);
-					if(q > 0){
+					if(q >= 0){
 						PrintXY(37,16, (unsigned char*)"+", 0);
 						printFloat(43,16,q);	
 						
@@ -266,7 +262,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"Version 1.0",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"Version 1.1",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){

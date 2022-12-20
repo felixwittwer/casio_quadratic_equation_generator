@@ -140,13 +140,13 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				nulltwo=rand()%(10+10+1)-10;
 //rand()%(max-min+1)+ min
 				p = (nullone + nulltwo)*(-1);
-				q = nullone * nulltwo;
+				q = (nullone * nulltwo);
 				
 //for DEBUG:	printFloat(50,15,nullone);
 //for DEBUG:	printFloat(50,25,nulltwo);
 
 				PrintXY(1,40, (unsigned char*)"                                                                          ", 0);
-				
+
 				if(p >= 0){
 					locate(4,3);
 					Print((unsigned char*)"+");
@@ -181,7 +181,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 //							Print((unsigned char*)"Error");
 						}
 						else{
-							PrintXY(49,16, (unsigned char*)" = 0              ", 0);
+							PrintXY(55,16, (unsigned char*)" = 0              ", 0);
 						}
 					}
 				}
@@ -267,7 +267,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"Version 1.2",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"Version 1.3",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){

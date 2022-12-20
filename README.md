@@ -50,14 +50,14 @@ Use [F1] or [F6] to exit.<br>
 for a more detailed guide with images see quadgen_manual.pdf
 
 ## Changelog
-# V 1.0
+### V 1.0
 Initial version <br>
 <br>
 
-# V 1.1
+### V 1.1
 fix display bug when q is 0<br>
 <br>
 
-# V 1.2
+### V 1.2
 fix display bug when N1 or N2 is negative and one of them is 1<br>
 <br>

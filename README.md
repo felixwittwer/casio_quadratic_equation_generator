@@ -1,7 +1,7 @@
 ### casio_quadratic_equation_generator only for Casio fx-9860 GIII or GII
 A generator for practicing solving quadratic equations
 
-##Installation
+## Installation
 
 Connect Casio fx-9860 GIII or GII to your Computer with the help of the USB cable.<br>
 Press [F1]<br>
@@ -16,12 +16,12 @@ Press [EXIT] as shown on the screen.<br>
 Press [MENU] as shown on the screen.<br>
 <br>
 
-##Use
+## Use
 
 Open Quadgen by scrolling to the symbol and pressing [EXE].<br>
 <br>
 
-#Menu
+# Menu
 Use [1] or [2] or [3] for selecting in the menu.<br>
 Then press [EXE] to confirm.<br>
 Exit with [F1]. (If you use Exit you have to start another menu on<br>
@@ -29,22 +29,35 @@ the calculator and the start Quadgen to restart the application <br>
 so just use the [MENU] key instead)<br>
 <br>
 
-#Generator
+# Generator
 Use [1] and [EXE] for the Generator menu.<br>
 Use [F1] to exit.<br>
 Use [F2] for generating a new equation.<br>
 Use [F3] to show the solutions of the equation.<br>
 <br>
 
-#HELP
+# HELP
 Use [2] and [EXE] for the HELP menu.<br>
 Use [F1] to exit.<br>
 Displays all information for the use of the generator.<br>
 <br>
 
-#Version
+# Version
 Use [3] and [EXE] for the Version menu.<br>
 Use [F1] or [F6] to exit.<br>
 <br>
 
 for a more detailed guide with images see quadgen_manual.pdf
+
+## Changelog
+# V 1.0
+Initial version <br>
+<br>
+
+# V 1.1
+fix display bug when q is 0<br>
+<br>
+
+# V 1.2
+fix display bug when N1 or N2 is negative and one of them is 1<br>
+<br>

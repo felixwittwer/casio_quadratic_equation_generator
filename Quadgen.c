@@ -174,7 +174,11 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 						printFloat(37,16,q);
 
 						if(q < 10 && q > -10){
-							PrintXY(43,16, (unsigned char*)" = 0               ", 0);
+							printFloat(37,16,q);
+							PrintXY(49,16, (unsigned char*)" = 0               ", 0);
+//	DEBUG for Version 1.2 fix							
+//							locate(4,4);
+//							Print((unsigned char*)"Error");
 						}
 						else{
 							PrintXY(49,16, (unsigned char*)" = 0              ", 0);
@@ -183,7 +187,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				}
 				else{
 				PrintXY(36,16, (unsigned char*)"x  ", 0);
-					if(q > 0){
+					if(q >= 0){
 						PrintXY(43,16, (unsigned char*)"+", 0);
 						printFloat(49,16,q);
 						
@@ -198,6 +202,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 						printFloat(43,16,q);
 
 						if(q < 10 && q > -10){
+							printFloat(37,16,q);
 							PrintXY(49,16, (unsigned char*)" = 0               ", 0);
 						}
 						else{
@@ -262,7 +267,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"Version 1.1",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"Version 1.2",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){

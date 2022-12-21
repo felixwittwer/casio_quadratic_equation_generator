@@ -222,6 +222,10 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				PrintXY(43,40, (unsigned char*)"                      ", 0);
 				printFloat(50,40,nulltwo);
 				PrintXY(87,40, (unsigned char*)"                                      ", 0);
+
+				if(nullone==nulltwo){
+					PrintXY(50,40, (unsigned char*)"                                      ", 0);
+				}
 			}
 		}
 	    }
@@ -267,7 +271,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"Version 1.3",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"Version 1.3.1",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){

@@ -50,6 +50,11 @@ Use [F1] or [F6] to exit.<br>
 for a more detailed guide with images see quadgen_manual.pdf
 
 ## Changelog
+V == Version<br>
+1.0 for initial version<br>
+1.1 for hotfixes<br>
+1.1.1 for general updates / adding features<br>
+
 ### V 1.0
 Initial version <br>
 <br>
@@ -61,3 +66,12 @@ fix display bug when q is 0<br>
 ### V 1.2
 fix display bug when N1 or N2 is negative and one of them is 1<br>
 <br>
+
+### V 1.3
+fix display bug when q is more than one character<br>
+<br>
+
+### V 1.3.1
+display only one soloution when they are the same<br>
+<br>
+

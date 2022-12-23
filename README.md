@@ -75,3 +75,8 @@ fix display bug when q is more than one character<br>
 display only one soloution when they are the same<br>
 <br>
 
+### V1.3.2
+Remove Monochromelib<br>
+rename variable numerselected to numberselected<br>
+<br>
+

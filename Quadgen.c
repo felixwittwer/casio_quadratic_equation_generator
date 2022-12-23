@@ -8,7 +8,6 @@
 /*                                                               */
 /*****************************************************************/
 #include "fxlib.h"
-#include "MonochromeLib.h"
 #include <stdio.h>
 
 void printFloat(int x, int y, float f){
@@ -42,15 +41,14 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
     unsigned int key;
     int selecting = 1;
     int running = 1;
-    float numerselected = 0;
+    float numberselected = 0;
     float pi = 3.121593;
     int nullone = 0;
     int nulltwo = 0;
     int p = 0;
     int q = 0;
 
-	    ML_CLEAR_VRAM;
-	    ML_CLEAR_SCREEN;
+	    Bdisp_AllClr_DDVRAM();
 
     while(1){
 	//Startscreen
@@ -61,7 +59,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	   PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 	   PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 	   
-	   ML_DISPLAY_VRAM;
+	   Bdisp_PutDisp_DD();
 	
 	
 	   while(selecting==1){
@@ -81,7 +79,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		}
 		
 		if(key == KEY_CHAR_1){
-			numerselected = 1;
+			numberselected = 1;
 			locate(2,3);
 	    		Print("\xE6\x9B");
 			locate(2,4);
@@ -91,7 +89,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		}
 	
 		if(key == KEY_CHAR_2){
-			numerselected = 2;
+			numberselected = 2;
 			locate(2,3);
 	    		Print("\xE6\x83");
 			locate(2,4);
@@ -101,7 +99,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		}
 	
 		if(key == KEY_CHAR_3){
-			numerselected = 3;
+			numberselected = 3;
 			locate(2,3);
 	    		Print("\xE6\x83");
 			locate(2,4);
@@ -113,14 +111,18 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		if(key == KEY_CTRL_F1){
 			return 1;
 		}
-	// for DEBUG: printFloat(50,25,numerselected);
+		
+		if(key == KEY_CTRL_EXIT){
+			return 1;
+		}
+	// for DEBUG: printFloat(50,25,numberselected);
 	
 	   };
 	
 	
 	    Bdisp_AllClr_DDVRAM();
 		
-	    if(numerselected==1){
+	    if(numberselected==1){
 	 	PrintMini(15,2,(unsigned char*)">>>> Generator V1 <<<<",MINI_OVER);
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(24,57,(unsigned char*)"Gen",MINI_OVER);
@@ -130,6 +132,12 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		while(1){
 			GetKey(&key);
 			if(key ==  KEY_CTRL_F1){
+				selecting = 1;
+				Bdisp_AllClr_DDVRAM();
+				break;
+			}
+			
+			if(key ==  KEY_CTRL_EXIT){
 				selecting = 1;
 				Bdisp_AllClr_DDVRAM();
 				break;
@@ -230,7 +238,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		}
 	    }
 	
-	    if(numerselected==2){
+	    if(numberselected==2){
 	 	PrintMini(33,2,(unsigned char*)">>>> HELP <<<<",MINI_OVER);
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(24,57,(unsigned char*)"Gen",MINI_OVER);
@@ -263,15 +271,21 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				Bdisp_AllClr_DDVRAM();
 				break;
 			}
+
+			if(key ==  KEY_CTRL_EXIT){
+				selecting = 1;
+				Bdisp_AllClr_DDVRAM();
+				break;
+			}
 		}
 	    }
 	
-	    if(numerselected==3){
+	    if(numberselected==3){
 	 	PrintMini(29,2,(unsigned char*)">>>> Version <<<<",MINI_OVER);
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"Version 1.3.1",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"Version 1.3.2",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){
@@ -289,6 +303,12 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 			}
 
 			if(key ==  KEY_CTRL_F1){
+				selecting = 1;
+				Bdisp_AllClr_DDVRAM();
+				break;
+			}
+
+			if(key ==  KEY_CTRL_EXIT){
 				selecting = 1;
 				Bdisp_AllClr_DDVRAM();
 				break;

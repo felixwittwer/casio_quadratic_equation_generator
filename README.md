@@ -75,8 +75,14 @@ fix display bug when q is more than one character<br>
 display only one soloution when they are the same<br>
 <br>
 
-### V1.3.2
+### V 1.3.2
 Remove Monochromelib<br>
 rename variable numerselected to numberselected<br>
 <br>
+
+### V 1.4.0
+display variables as integers<br>
+let users choose the seed by their own -> fix issue<br> 
+<br>
+
 

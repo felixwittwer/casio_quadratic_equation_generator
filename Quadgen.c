@@ -10,18 +10,35 @@
 #include "fxlib.h"
 #include <stdio.h>
 
-void printFloat(int x, int y, float f){
+void printFloat(int x, int y, int f){
     unsigned char buffer[9];
-    sprintf(buffer, "%f", f);
+    sprintf(buffer, "%d", f);
     PrintXY(x,y, buffer, 0);
 //    PrintMini(x,y, buffer, MINI_OVER);
 }
 
-void printminiFloat(int x, int y, float f){
+void printminiFloat(int x, int y, int f){
     unsigned char buffer[9];
-    sprintf(buffer, "%f", f);
+    sprintf(buffer, "%d", f);
 //    PrintXY(x,y, buffer, 0);
     PrintMini(x,y, buffer, MINI_OVER);
+}
+
+void orientateSeed(seed){
+	PrintXY(100,32, "           ", 0);
+	if(seed >= 100){
+		printFloat(102,32,seed);
+	}else if(seed >= 10){
+		printFloat(105,32,seed);
+	}else if(seed < 10 && seed >=0 ){		
+		printFloat(108,32,seed);
+	}else if(seed <= -100){		
+		printFloat(96,32,seed);
+	}else if(seed <= -10){		
+		printFloat(99,32,seed);
+	}else if(seed < 0){		
+		printFloat(102,32,seed);
+	}
 }
 
 //****************************************************************************
@@ -42,7 +59,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
     int selecting = 1;
     int running = 1;
     float numberselected = 0;
-    float pi = 3.121593;
+    int seed = 1;
     int nullone = 0;
     int nulltwo = 0;
     int p = 0;
@@ -127,10 +144,16 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(24,57,(unsigned char*)"Gen",MINI_OVER);
 		PrintMini(43,57,(unsigned char*)"Show",MINI_OVER);
+		locate(19,4);
+	    	Print("\xE6\x9C");
+		locate(19,6);
+	    	Print("\xE6\x9D");	
+		orientateSeed(seed);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){
 			GetKey(&key);
+
 			if(key ==  KEY_CTRL_F1){
 				selecting = 1;
 				Bdisp_AllClr_DDVRAM();
@@ -143,7 +166,26 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				break;
 			}
 
+			if(key ==  KEY_CTRL_UP){
+				seed = seed + 1;
+			}
+
+			if(key ==  KEY_CTRL_DOWN){
+				seed = seed - 1;
+			}
+
+			if(key ==  KEY_CTRL_LEFT){
+				seed = seed - 10;
+			}
+
+			if(key ==  KEY_CTRL_RIGHT){
+				seed = seed + 10;
+			}
+
+			orientateSeed(seed);
+
 			if(key ==  KEY_CTRL_F2){
+				srand(seed);
 				nullone=rand()%(10+10+1)-10;
 				nulltwo=rand()%(10+10+1)-10;
 //rand()%(max-min+1)+ min
@@ -223,18 +265,24 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				Print((unsigned char*)"x");
 				locate(3,3);
 				Print("\xE5\xC2");
+				
+				seed = seed +1;
 			}
 
 			if(key ==  KEY_CTRL_F3){
 				printFloat(6,40,nullone);
-				PrintXY(43,40, (unsigned char*)"                      ", 0);
 				printFloat(50,40,nulltwo);
-				PrintXY(87,40, (unsigned char*)"                                      ", 0);
 
 				if(nullone==nulltwo){
 					PrintXY(50,40, (unsigned char*)"                                      ", 0);
 				}
 			}
+
+			locate(19,4);
+	    		Print("\xE6\x9C");
+			locate(19,6);
+	    		Print("\xE6\x9D");		
+
 		}
 	    }
 	
@@ -285,7 +333,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"Version 1.3.2",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"Version 1.4.0",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){
@@ -359,4 +407,3 @@ int InitializeSystem(int isAppli, unsigned short OptionNum)
 }
 
 #pragma section
-

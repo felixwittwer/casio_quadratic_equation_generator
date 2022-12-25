@@ -72,7 +72,8 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	   PrintMini(7,2,(unsigned char*)">>>> Quad Gen <<<<",MINI_OVER);
 	   PrintMini(14,17,(unsigned char*)"1 Generator",MINI_OVER);
 	   PrintMini(14,25,(unsigned char*)"2 HELP",MINI_OVER);
-	   PrintMini(14,33,(unsigned char*)"3 Version",MINI_OVER);
+	   PrintMini(14,33,(unsigned char*)"3 SETTINGS",MINI_OVER);
+	   PrintMini(14,41,(unsigned char*)"4 Version",MINI_OVER);
 	   PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 	   PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 	   
@@ -103,6 +104,8 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	    		Print("\xE6\x83");
 			locate(2,5);
 	    		Print("\xE6\x83");
+			locate(2,6);
+	    		Print("\xE6\x83");
 		}
 	
 		if(key == KEY_CHAR_2){
@@ -113,6 +116,8 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	    		Print("\xE6\x9B");
 			locate(2,5);
 	    		Print("\xE6\x83");
+			locate(2,6);
+	    		Print("\xE6\x83");
 		}
 	
 		if(key == KEY_CHAR_3){
@@ -122,6 +127,20 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 			locate(2,4);
 	    		Print("\xE6\x83");
 			locate(2,5);
+	    		Print("\xE6\x9B");
+			locate(2,6);
+	    		Print("\xE6\x83");
+		}
+
+		if(key == KEY_CHAR_4){
+			numberselected = 4;
+			locate(2,3);
+	    		Print("\xE6\x83");
+			locate(2,4);
+	    		Print("\xE6\x83");
+			locate(2,5);
+	    		Print("\xE6\x83");
+			locate(2,6);
 	    		Print("\xE6\x9B");
 		}
 	
@@ -329,11 +348,45 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	    }
 	
 	    if(numberselected==3){
+	 	PrintMini(23,2,(unsigned char*)">>>> SETTINGS <<<<",MINI_OVER);
+		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
+		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
+		Bdisp_PutDisp_DD();
+		Sleep(1000);
+		while(1){
+			GetKey(&key);
+			if(key ==  KEY_CTRL_EXE){
+				selecting = 1;
+				Bdisp_AllClr_DDVRAM();
+				break;
+			}
+
+			if(key ==  KEY_CTRL_F6){
+				selecting = 1;
+				Bdisp_AllClr_DDVRAM();
+				break;
+			}
+
+			if(key ==  KEY_CTRL_F1){
+				selecting = 1;
+				Bdisp_AllClr_DDVRAM();
+				break;
+			}
+
+			if(key ==  KEY_CTRL_EXIT){
+				selecting = 1;
+				Bdisp_AllClr_DDVRAM();
+				break;
+			}
+		}
+	    }
+
+	    if(numberselected==4){
 	 	PrintMini(29,2,(unsigned char*)">>>> Version <<<<",MINI_OVER);
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"Version 1.4.0",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"Version 1.4.1",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){

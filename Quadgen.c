@@ -74,7 +74,6 @@ void renderSettings(int currsetingselected, int statussetone, int statussettwo){
 int AddIn_main(int isAppli, unsigned short OptionNum)
 {
     unsigned int key;
-//    FONTCHARACTER PathName[] = {'\\', '\\', 'f', 'l', 's', '0', '\\', 'Q', 'U', 'A', 'D', 'G', 'E', 'N', '.', 'd', 'a', 't', 0};
     int selecting = 1;
     int running = 1;
     int numberselected = 0;
@@ -102,12 +101,6 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	   PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 	   PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);	   
 	   Bdisp_PutDisp_DD();
-
-
-//	   Bfile_CreateFile(PathName, 3000);
-//	   file = Bfile_OpenFile(PathName, _OPENMODE_WRITE);
-//	   Bfile_WriteFile(file, &seed, 3000);	
-//	   Bfile_CloseFile(file);
 
 
 	   while(selecting==1){

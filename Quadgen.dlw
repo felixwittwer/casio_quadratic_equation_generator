@@ -9,7 +9,7 @@ Height=4740
 Width=5565
 State=0
 Flags=00000020
-Setting=74:1:Quadgen.c
+Setting=99:1:Quadgen.c
 OptionA=0
 
 [_2]
@@ -59,18 +59,18 @@ OptionA=0
 
 [_6]
 Type=3
-Order=9
+Order=8
 Top=0
-Left=10788
-Height=6348
-Width=2232
+Left=10785
+Height=13350
+Width=10095
 State=16
 Flags=00000000
 OptionA=0
 
 [_7]
 Type=2
-Order=8
+Order=10
 Top=6348
 Left=7800
 Height=3588
@@ -92,7 +92,7 @@ OptionA=0
 
 [_9]
 Type=15
-Order=3
+Order=0
 Top=11490
 Left=60
 Height=8505
@@ -101,14 +101,26 @@ State=0
 Flags=00000000
 OptionA=0
 
+[_10]
+Type=9
+Order=9
+Top=1950
+Left=1950
+Height=13620
+Width=19215
+State=16
+Flags=00000020
+Setting=80000000:00006B30:00000000:
+OptionA=0
+
 [_32]
 Type=16
-Order=0
+Order=3
 Top=75
 Left=13770
 Height=18750
 Width=11085
 State=0
 Flags=00000020
-Setting=49:3:Quadgen.c
+Setting=419:24:Quadgen.c
 OptionA=0

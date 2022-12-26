@@ -41,6 +41,24 @@ void orientateSeed(seed){
 	}
 }
 
+void renderSettings(int currsetingselected, int statussetone, int statussettwo){
+	if(statussetone == 0){
+		locate(2,3);
+		Print("\xE6\xA5");
+	}else if(statussetone ==1){
+		locate(2,3);
+	 	Print("\xE6\xA6");
+	}
+	
+	if(statussettwo == 0){
+		locate(2,5);
+		Print("\xE6\xA5");
+	}else if(statussettwo ==1){
+		locate(2,5);
+	 	Print("\xE6\xA6");
+	}
+}
+
 //****************************************************************************
 //  AddIn_main (Sample program main function)
 //
@@ -56,14 +74,21 @@ void orientateSeed(seed){
 int AddIn_main(int isAppli, unsigned short OptionNum)
 {
     unsigned int key;
+//    FONTCHARACTER PathName[] = {'\\', '\\', 'f', 'l', 's', '0', '\\', 'Q', 'U', 'A', 'D', 'G', 'E', 'N', '.', 'd', 'a', 't', 0};
     int selecting = 1;
     int running = 1;
-    float numberselected = 0;
+    int numberselected = 0;
+
+    int currsetingselected = 1;
+    int statussetone = 0;
+    int statussettwo = 0;
+
     int seed = 1;
     int nullone = 0;
     int nulltwo = 0;
     int p = 0;
     int q = 0;
+    int file;
 
 	    Bdisp_AllClr_DDVRAM();
 
@@ -75,11 +100,16 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	   PrintMini(14,33,(unsigned char*)"3 SETTINGS",MINI_OVER);
 	   PrintMini(14,41,(unsigned char*)"4 Version",MINI_OVER);
 	   PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
-	   PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
-	   
+	   PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);	   
 	   Bdisp_PutDisp_DD();
-	
-	
+
+
+//	   Bfile_CreateFile(PathName, 3000);
+//	   file = Bfile_OpenFile(PathName, _OPENMODE_WRITE);
+//	   Bfile_WriteFile(file, &seed, 3000);	
+//	   Bfile_CloseFile(file);
+
+
 	   while(selecting==1){
 	
 		GetKey(&key);
@@ -320,7 +350,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){
-			GetKey(&key);
+			GetKey(&key);		
 			if(key ==  KEY_CTRL_EXE){
 				selecting = 1;
 				Bdisp_AllClr_DDVRAM();
@@ -351,20 +381,83 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	 	PrintMini(23,2,(unsigned char*)">>>> SETTINGS <<<<",MINI_OVER);
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
+
+		renderSettings(currsetingselected, statussetone, statussettwo);
+
+		PrintMini(17,14,(unsigned char*)"SAVE custom USER SEED for",MINI_OVER);
+		PrintMini(17,20,(unsigned char*)"next session.",MINI_OVER);
+
+		PrintMini(17,31,(unsigned char*)"SHOW DEBUG code on the",MINI_OVER);
+		PrintMini(17,37,(unsigned char*)"bottom right.",MINI_OVER);
+		
+		PrintMini(33,57,(unsigned char*)"Setting  1",MINI_OVER);
+
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){
 			GetKey(&key);
+			if(key == KEY_CTRL_DOWN && currsetingselected == 1){
+				currsetingselected = 2;
+			}
+
+			if(key == KEY_CTRL_UP && currsetingselected == 2){
+				currsetingselected = 1;
+			}
+
+			if(key == KEY_CHAR_1){
+				currsetingselected = 1;
+			}
+
+			if(key == KEY_CHAR_2){
+				currsetingselected = 2;
+			}
+
+			if(currsetingselected == 1){
+				locate(1,3);
+	   		 	Print("\xE6\x91");
+				locate(1,5);
+			    	Print("\xE6\xE0");
+			}else if(currsetingselected==2){
+				locate(1,5);
+			    	Print("\xE6\x91");
+				locate(1,3);
+			    	Print("\xE6\xE0");
+			}
+
+			renderSettings(currsetingselected, statussetone, statussettwo);			
+
+			PrintMini(33,57,(unsigned char*)"Setting",MINI_OVER);
+			printminiFloat(67,57,currsetingselected);
+//			printminiFloat(73,57,statussetone);			
+//			printminiFloat(79,57,statussettwo);	
+
+
 			if(key ==  KEY_CTRL_EXE){
-				selecting = 1;
-				Bdisp_AllClr_DDVRAM();
-				break;
+				if(currsetingselected == 1 && statussetone == 0){
+					statussetone = 1;
+				}else if(currsetingselected == 1 && statussetone == 1){
+					statussetone = 0;
+				}
+				if(currsetingselected == 2 && statussettwo == 0){
+					statussettwo = 1;
+				}else if(currsetingselected == 2 && statussettwo == 1){
+					statussettwo = 0;
+				}
+				renderSettings(currsetingselected, statussetone, statussettwo);	
 			}
 
 			if(key ==  KEY_CTRL_F6){
-				selecting = 1;
-				Bdisp_AllClr_DDVRAM();
-				break;
+				if(currsetingselected == 1 && statussetone == 0){
+					statussetone = 1;
+				}else if(currsetingselected == 1 && statussetone == 1){
+					statussetone = 0;
+				}
+				if(currsetingselected == 2 && statussettwo == 0){
+					statussettwo = 1;
+				}else if(currsetingselected == 2 && statussettwo == 1){
+					statussettwo = 0;
+				}
+				renderSettings(currsetingselected, statussetone, statussettwo);	
 			}
 
 			if(key ==  KEY_CTRL_F1){

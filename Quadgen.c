@@ -78,7 +78,7 @@ void readdata(int statussetone, int statussettwo, int seed, int file, FONTCHARAC
 	   file = Bfile_OpenFile(PathName, _OPENMODE_READ);
 	   Bfile_ReadFile(file, read_data, 30, 0);
 
-	   sprintf(buffer, "%s", read_data);
+	   sprintf(buffer, "%d", read_data);
 	   PrintMini(35, 57, buffer, MINI_OVER);
 
 //	   [READ STATUS SET one/two]
@@ -122,6 +122,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
     int nulltwo = 0;
     int p = 0;
     int q = 0;
+    char buffer[12];
     int file;
 
     Bdisp_AllClr_DDVRAM();
@@ -139,7 +140,6 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	   PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);	   
 	   readdata(statussetone, statussettwo, seed, file, PathName);
 	   Bdisp_PutDisp_DD();
-
 	   while(selecting==1){
 	
 		GetKey(&key);
@@ -279,70 +279,17 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 //for DEBUG:	printFloat(50,25,nulltwo);
 
 				PrintXY(1,40, (unsigned char*)"                                                                          ", 0);
-
-				if(p >= 0){
-					locate(4,3);
-					Print((unsigned char*)"+");
-					printFloat(24,16,p);	
+				if(p >= 0 && q >= 0){
+					sprintf(buffer, "+%dx+%d = 0   ", p, q);
+				}else if (q >= 0){
+					sprintf(buffer, "%dx+%d = 0   ", p, q);
+				}else if(p >= 0){
+					sprintf(buffer, "+%dx%d = 0   ", p, q);
+				}else{
+					sprintf(buffer, "%dx%d = 0   ", p, q);
 				}
-				else{
-					printFloat(18,16,p);
-				}
-
-				if(p < 10 && p > -10){
-					PrintXY(30,16, (unsigned char*)"x   ", 0);
-					if(q >= 0){
-						PrintXY(37,16, (unsigned char*)"+", 0);
-						printFloat(43,16,q);	
-						
-						if(q < 10 && q > -10){
-							PrintXY(49,16, (unsigned char*)" = 0               ", 0);
-						}
-						else{
-							PrintXY(55,16, (unsigned char*)" = 0              ", 0);
-						}
-
-					}
-					else{
-						printFloat(37,16,q);
-
-						if(q < 10 && q > -10){
-							printFloat(37,16,q);
-							PrintXY(49,16, (unsigned char*)" = 0               ", 0);
-//	DEBUG for Version 1.2 fix							
-//							locate(4,4);
-//							Print((unsigned char*)"Error");
-						}
-						else{
-							PrintXY(55,16, (unsigned char*)" = 0              ", 0);
-						}
-					}
-				}
-				else{
-				PrintXY(36,16, (unsigned char*)"x  ", 0);
-					if(q >= 0){
-						PrintXY(43,16, (unsigned char*)"+", 0);
-						printFloat(49,16,q);
-						
-						if(q < 10 && q > -10){
-							PrintXY(55,16, (unsigned char*)" = 0               ", 0);
-						}
-						else{
-							PrintXY(61,16, (unsigned char*)" = 0              ", 0);
-						}	
-					}
-					else{
-						printFloat(43,16,q);
-
-						if(q < 10 && q > -10){
-							printFloat(37,16,q);
-							PrintXY(49,16, (unsigned char*)" = 0               ", 0);
-						}
-						else{
-							PrintXY(55,16, (unsigned char*)" = 0              ", 0);
-						}
-					}
-				}
+				
+    			PrintXY(18,16, buffer, 0);	
 				
 				locate(2,3);
 				Print((unsigned char*)"x");

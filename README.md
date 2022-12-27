@@ -85,4 +85,7 @@ display variables as integers<br>
 let users choose the seed by their own -> fix issue<br> 
 <br>
 
+### V 1.4.1
+add settings menu<br>
+<br>
 

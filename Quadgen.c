@@ -139,6 +139,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	   PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);	   
 	   readdata(statussetone, statussettwo, seed, file, PathName);
 	   Bdisp_PutDisp_DD();
+
 	   while(selecting==1){
 	
 		GetKey(&key);

@@ -89,3 +89,7 @@ let users choose the seed by their own -> fix issue<br>
 add settings menu<br>
 <br>
 
+### V 1.4.2
+save data to file<br>
+settingone settingtwo seed<br>
+<br>

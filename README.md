@@ -1,6 +1,11 @@
 ### casio_quadratic_equation_generator only for Casio fx-9860 GIII or GII
 A generator for practicing solving quadratic equations
 
+Now in two editions available
+
+1. Professional   (all tools and settingsmenu)  -> master branch
+2. Performance    (only generator)              -> performance branch
+
 ## Installation
 
 Connect Casio fx-9860 GIII or GII to your Computer with the help of the USB cable.<br>
@@ -59,37 +64,37 @@ V == Version<br>
 Initial version <br>
 <br>
 
-### V 1.1
+**V 1.1**<br>
 fix display bug when q is 0<br>
 <br>
 
-### V 1.2
+**V 1.2**<br>
 fix display bug when N1 or N2 is negative and one of them is 1<br>
 <br>
 
-### V 1.3
+**V 1.3**<br>
 fix display bug when q is more than one character<br>
 <br>
 
-### V 1.3.1
+**V 1.3.1**<br>
 display only one soloution when they are the same<br>
 <br>
 
-### V 1.3.2
+**V 1.3.2**<br>
 Remove Monochromelib<br>
 rename variable numerselected to numberselected<br>
 <br>
 
-### V 1.4.0
+**V 1.4.0**<br>
 display variables as integers<br>
 let users choose the seed by their own -> fix issue<br> 
 <br>
 
-### V 1.4.1
+**V 1.4.1**<br>
 add settings menu<br>
 <br>
 
-### V 1.4.2
+** V 1.4.2**<br>
 save data to file<br>
 settingone settingtwo seed<br>
 <br>

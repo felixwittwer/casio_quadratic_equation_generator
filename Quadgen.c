@@ -72,14 +72,14 @@ int savedata(int statussetone, int statussettwo, int seed, int file, FONTCHARACT
 }
 
 void readdata(int statussetone, int statussettwo, int seed, int file, FONTCHARACTER*PathName){
-	   char read_data[30];
+	   unsigned  char read_data[30];
 	   char buffer[30];
 
 	   file = Bfile_OpenFile(PathName, _OPENMODE_READ);
-	   Bfile_ReadFile(file, &read_data, 30, 0);
+	   Bfile_ReadFile(file, read_data, 30, 0);
 
-//	   sprintf(buffer, "%s", read_data);
-//	   PrintMini(35, 57, read_data, MINI_OVER);
+	   sprintf(buffer, "%s", read_data);
+	   PrintMini(35, 57, buffer, MINI_OVER);
 
 //	   [READ STATUS SET one/two]
 
@@ -126,7 +126,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 
     Bdisp_AllClr_DDVRAM();
 
-//     readdata(statussetone, statussettwo, seed, file, PathName);
+//   readdata(statussetone, statussettwo, seed, file, PathName);
 
     while(1){
 	//Startscreen
@@ -137,11 +137,12 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	   PrintMini(14,41,(unsigned char*)"4 Version",MINI_OVER);
 	   PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 	   PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);	   
+	   readdata(statussetone, statussettwo, seed, file, PathName);
 	   Bdisp_PutDisp_DD();
 	   while(selecting==1){
 	
 		GetKey(&key);
-	
+		
 		if(key ==  KEY_CTRL_EXE){
 			selecting = 0;
 			PrintMini(50,17,(unsigned char*)"Break",MINI_OVER);
@@ -519,6 +520,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
 		PrintMini(4,24,(unsigned char*)"Version 1.4.2",MINI_OVER);
+		PrintMini(4,32,(unsigned char*)"Professional Edition",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){

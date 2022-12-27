@@ -2,7 +2,7 @@
 
 [_1]
 Type=5
-Order=2
+Order=0
 Top=15
 Left=2235
 Height=4740
@@ -14,7 +14,7 @@ OptionA=0
 
 [_2]
 Type=1
-Order=3
+Order=1
 Top=15
 Left=7800
 Height=4830
@@ -92,7 +92,7 @@ OptionA=0
 
 [_9]
 Type=15
-Order=0
+Order=2
 Top=11490
 Left=60
 Height=8505
@@ -115,12 +115,12 @@ OptionA=0
 
 [_32]
 Type=16
-Order=1
+Order=3
 Top=75
 Left=13515
 Height=19935
 Width=11670
 State=0
 Flags=00000020
-Setting=83:1:Quadgen.c
+Setting=523:55:Quadgen.c
 OptionA=0

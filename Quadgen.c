@@ -59,6 +59,40 @@ void renderSettings(int currsetingselected, int statussetone, int statussettwo){
 	}
 }
 
+int savedata(int statussetone, int statussettwo, int seed, int file, FONTCHARACTER*PathName){
+	   char save_data[30];
+
+	   Bfile_CreateFile(PathName, 30);
+	   file = Bfile_OpenFile(PathName, _OPENMODE_WRITE);
+
+	   sprintf(save_data, "%d%d%d", statussetone, statussettwo, seed);
+	   Bfile_WriteFile(file, &save_data, 30);	
+
+	   Bfile_CloseFile(file);
+}
+
+void readdata(int statussetone, int statussettwo, int seed, int file, FONTCHARACTER*PathName){
+	   unsigned  char read_data[30];
+	   char buffer[30];
+
+	   file = Bfile_OpenFile(PathName, _OPENMODE_READ);
+	   Bfile_ReadFile(file, read_data, 30, 0);
+
+	   sprintf(buffer, "%s", read_data);
+	   PrintMini(35, 57, buffer, MINI_OVER);
+
+//	   [READ STATUS SET one/two]
+
+//	   int statussetone = [READ STATUS];
+//	   int statussettwo = [READ STATUS];
+
+//	   if(statussetone==1){
+//		seed = [READSEED];
+//	   }
+
+	   Bfile_CloseFile(file);
+}
+
 //****************************************************************************
 //  AddIn_main (Sample program main function)
 //
@@ -74,12 +108,13 @@ void renderSettings(int currsetingselected, int statussetone, int statussettwo){
 int AddIn_main(int isAppli, unsigned short OptionNum)
 {
     unsigned int key;
+    FONTCHARACTER PathName[] = {'\\', '\\', 'f', 'l', 's', '0', '\\', 'Q', 'U', 'A', 'D', 'G', 'E', 'N', '.', 'd', 'a', 't', 0};
     int selecting = 1;
     int running = 1;
-    int numberselected = 0;
+    int numberselected = 1;
 
     int currsetingselected = 1;
-    int statussetone = 0;
+    int statussetone = 1;
     int statussettwo = 0;
 
     int seed = 1;
@@ -89,7 +124,9 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
     int q = 0;
     int file;
 
-	    Bdisp_AllClr_DDVRAM();
+    Bdisp_AllClr_DDVRAM();
+
+//   readdata(statussetone, statussettwo, seed, file, PathName);
 
     while(1){
 	//Startscreen
@@ -100,13 +137,13 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	   PrintMini(14,41,(unsigned char*)"4 Version",MINI_OVER);
 	   PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 	   PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);	   
+	   readdata(statussetone, statussettwo, seed, file, PathName);
 	   Bdisp_PutDisp_DD();
-
 
 	   while(selecting==1){
 	
 		GetKey(&key);
-	
+		
 		if(key ==  KEY_CTRL_EXE){
 			selecting = 0;
 			PrintMini(50,17,(unsigned char*)"Break",MINI_OVER);
@@ -222,6 +259,10 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 
 			if(key ==  KEY_CTRL_RIGHT){
 				seed = seed + 10;
+			}
+
+			if(statussetone==1){
+					savedata(statussetone, statussettwo, seed, file, PathName);
 			}
 
 			orientateSeed(seed);
@@ -374,6 +415,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	 	PrintMini(23,2,(unsigned char*)">>>> SETTINGS <<<<",MINI_OVER);
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
+//		PrintMini(89,57,(unsigned char*)"SAVE",MINI_OVER);
 
 		renderSettings(currsetingselected, statussetone, statussettwo);
 
@@ -437,6 +479,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 					statussettwo = 0;
 				}
 				renderSettings(currsetingselected, statussetone, statussettwo);	
+				savedata(statussetone, statussettwo, seed, file, PathName);
 			}
 
 			if(key ==  KEY_CTRL_F6){
@@ -450,8 +493,13 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				}else if(currsetingselected == 2 && statussettwo == 1){
 					statussettwo = 0;
 				}
-				renderSettings(currsetingselected, statussetone, statussettwo);	
+				renderSettings(currsetingselected, statussetone, statussettwo);
+				savedata(statussetone, statussettwo, seed, file, PathName);	
 			}
+
+//			if(key ==  KEY_CTRL_F5){
+//				savedata(statussetone, statussettwo, seed, file, PathName);
+//			}
 
 			if(key ==  KEY_CTRL_F1){
 				selecting = 1;
@@ -472,7 +520,8 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"Version 1.4.1",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"Version 1.4.2",MINI_OVER);
+		PrintMini(4,32,(unsigned char*)"Professional Edition",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){

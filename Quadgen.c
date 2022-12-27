@@ -78,8 +78,8 @@ void readdata(int statussetone, int statussettwo, int seed, int file, FONTCHARAC
 	   file = Bfile_OpenFile(PathName, _OPENMODE_READ);
 	   Bfile_ReadFile(file, read_data, 30, 0);
 
-	   sprintf(buffer, "%d", read_data);
-	   PrintMini(35, 57, buffer, MINI_OVER);
+//	   sprintf(buffer, "%d", read_data);
+//	   PrintMini(35, 57, buffer, MINI_OVER);
 
 //	   [READ STATUS SET one/two]
 
@@ -114,7 +114,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
     int numberselected = 1;
 
     int currsetingselected = 1;
-    int statussetone = 1;
+    int statussetone = 0;
     int statussettwo = 0;
 
     int seed = 1;
@@ -366,8 +366,8 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 
 		renderSettings(currsetingselected, statussetone, statussettwo);
 
-		PrintMini(17,14,(unsigned char*)"SAVE custom USER SEED for",MINI_OVER);
-		PrintMini(17,20,(unsigned char*)"next session.",MINI_OVER);
+		PrintMini(17,14,(unsigned char*)"USE saved USER SEED from",MINI_OVER);
+		PrintMini(17,20,(unsigned char*)"last session.",MINI_OVER);
 
 		PrintMini(17,31,(unsigned char*)"SHOW DEBUG code on the",MINI_OVER);
 		PrintMini(17,37,(unsigned char*)"bottom right.",MINI_OVER);
@@ -467,7 +467,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"Version 1.4.2",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"Version 1.4.3",MINI_OVER);
 		PrintMini(4,32,(unsigned char*)"Professional Edition",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);

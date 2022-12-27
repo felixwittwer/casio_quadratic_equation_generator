@@ -126,7 +126,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 
     Bdisp_AllClr_DDVRAM();
 
-    readdata(statussetone, statussettwo, seed, file, PathName);
+//     readdata(statussetone, statussettwo, seed, file, PathName);
 
     while(1){
 	//Startscreen

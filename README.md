@@ -64,7 +64,7 @@ V == Version<br>
 Initial version <br>
 <br>
 
-** V 1.1 **
+**V 1.1**
 fix display bug when q is 0<br>
 <br>
 

@@ -1,112 +1,151 @@
 [DLSimRunSpace]
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=185
 Flags=00001012
 Sublevel=1
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=197
 Flags=00001012
 Sublevel=1
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=173
 Flags=00001012
 Sublevel=1
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=184
 Flags=00001012
 Sublevel=1
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=175
 Flags=00001012
 Sublevel=1
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=94
 Flags=00001012
 Sublevel=1
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=94
 Flags=00001012
 Sublevel=2
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=173
 Flags=00001012
 Sublevel=2
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=175
 Flags=00001012
 Sublevel=2
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=185
 Flags=00001012
 Sublevel=2
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=184
 Flags=00001012
 Sublevel=2
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=128
 Flags=00001012
 Sublevel=1
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=197
 Flags=00001012
 Sublevel=2
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=30
 Flags=00001012
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=61
 Flags=00001012
 Sublevel=1
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=61
 Flags=00001012
 Sublevel=2
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=24
 Flags=00001012
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=128
 Flags=00001012
 Sublevel=2
 
 [Breakpoint]
-File=C:\Users\Felix\Desktop\Quadgen-Testing\Quadgen.c
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
 Line=398
+Flags=00001012
+
+[Breakpoint]
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
+Line=59
+Flags=00001012
+Sublevel=1
+
+[Breakpoint]
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
+Line=77
+Flags=00001012
+
+[Breakpoint]
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
+Line=52
+Flags=00001012
+Sublevel=1
+
+[Breakpoint]
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
+Line=26
+Flags=00001012
+
+[Breakpoint]
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
+Line=59
+Flags=00001012
+Sublevel=2
+
+[Breakpoint]
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
+Line=52
+Flags=00001012
+Sublevel=2
+
+[Breakpoint]
+File=C:\Users\Felix\Desktop\Quadgen-Performance\Quadgen.c
+Line=58
 Flags=00001012

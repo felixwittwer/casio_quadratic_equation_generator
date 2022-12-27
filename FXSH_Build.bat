@@ -10,7 +10,7 @@ if exist FXADDINror.bin  del FXADDINror.bin
 cd ..
 if not exist debug\FXADDINror.bin  goto error
 
-"C:\Program Files\CASIO\fx-9860G SDK\Tools\MakeAddinHeader363.exe" "C:\Users\Felix\Desktop\Quadgen-Testing"
+"C:\Program Files\CASIO\fx-9860G SDK\Tools\MakeAddinHeader363.exe" "C:\Users\Felix\Desktop\Quadgen-Performance"
 if not exist QUADGEN.G1A  goto error
 echo Build has completed.
 goto end

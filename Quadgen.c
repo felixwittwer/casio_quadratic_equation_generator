@@ -41,24 +41,6 @@ void orientateSeed(seed){
 	}
 }
 
-void renderSettings(int currsetingselected, int statussetone, int statussettwo){
-	if(statussetone == 0){
-		locate(2,3);
-		Print("\xE6\xA5");
-	}else if(statussetone ==1){
-		locate(2,3);
-	 	Print("\xE6\xA6");
-	}
-	
-	if(statussettwo == 0){
-		locate(2,5);
-		Print("\xE6\xA5");
-	}else if(statussettwo ==1){
-		locate(2,5);
-	 	Print("\xE6\xA6");
-	}
-}
-
 //****************************************************************************
 //  AddIn_main (Sample program main function)
 //
@@ -76,33 +58,25 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
     unsigned int key;
     int selecting = 1;
     int running = 1;
-    int numberselected = 0;
-
-    int currsetingselected = 1;
-    int statussetone = 0;
-    int statussettwo = 0;
-
+    int numberselected = 1;
     int seed = 1;
     int nullone = 0;
     int nulltwo = 0;
     int p = 0;
     int q = 0;
     int file;
+	char buffer[12];
 
-	    Bdisp_AllClr_DDVRAM();
+    Bdisp_AllClr_DDVRAM();
 
     while(1){
 	//Startscreen
 	   PrintMini(7,2,(unsigned char*)">>>> Quad Gen <<<<",MINI_OVER);
 	   PrintMini(14,17,(unsigned char*)"1 Generator",MINI_OVER);
-	   PrintMini(14,25,(unsigned char*)"2 HELP",MINI_OVER);
-	   PrintMini(14,33,(unsigned char*)"3 SETTINGS",MINI_OVER);
-	   PrintMini(14,41,(unsigned char*)"4 Version",MINI_OVER);
+	   PrintMini(14,25,(unsigned char*)"2 Version",MINI_OVER);
 	   PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 	   PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);	   
 	   Bdisp_PutDisp_DD();
-
-
 	   while(selecting==1){
 	
 		GetKey(&key);
@@ -125,10 +99,6 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	    		Print("\xE6\x9B");
 			locate(2,4);
 	    		Print("\xE6\x83");
-			locate(2,5);
-	    		Print("\xE6\x83");
-			locate(2,6);
-	    		Print("\xE6\x83");
 		}
 	
 		if(key == KEY_CHAR_2){
@@ -136,34 +106,6 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 			locate(2,3);
 	    		Print("\xE6\x83");
 			locate(2,4);
-	    		Print("\xE6\x9B");
-			locate(2,5);
-	    		Print("\xE6\x83");
-			locate(2,6);
-	    		Print("\xE6\x83");
-		}
-	
-		if(key == KEY_CHAR_3){
-			numberselected = 3;
-			locate(2,3);
-	    		Print("\xE6\x83");
-			locate(2,4);
-	    		Print("\xE6\x83");
-			locate(2,5);
-	    		Print("\xE6\x9B");
-			locate(2,6);
-	    		Print("\xE6\x83");
-		}
-
-		if(key == KEY_CHAR_4){
-			numberselected = 4;
-			locate(2,3);
-	    		Print("\xE6\x83");
-			locate(2,4);
-	    		Print("\xE6\x83");
-			locate(2,5);
-	    		Print("\xE6\x83");
-			locate(2,6);
 	    		Print("\xE6\x9B");
 		}
 	
@@ -174,8 +116,6 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		if(key == KEY_CTRL_EXIT){
 			return 1;
 		}
-	// for DEBUG: printFloat(50,25,numberselected);
-	
 	   };
 	
 	
@@ -230,79 +170,13 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				srand(seed);
 				nullone=rand()%(10+10+1)-10;
 				nulltwo=rand()%(10+10+1)-10;
-//rand()%(max-min+1)+ min
 				p = (nullone + nulltwo)*(-1);
 				q = (nullone * nulltwo);
-				
-//for DEBUG:	printFloat(50,15,nullone);
-//for DEBUG:	printFloat(50,25,nulltwo);
 
 				PrintXY(1,40, (unsigned char*)"                                                                          ", 0);
 
-				if(p >= 0){
-					locate(4,3);
-					Print((unsigned char*)"+");
-					printFloat(24,16,p);	
-				}
-				else{
-					printFloat(18,16,p);
-				}
-
-				if(p < 10 && p > -10){
-					PrintXY(30,16, (unsigned char*)"x   ", 0);
-					if(q >= 0){
-						PrintXY(37,16, (unsigned char*)"+", 0);
-						printFloat(43,16,q);	
-						
-						if(q < 10 && q > -10){
-							PrintXY(49,16, (unsigned char*)" = 0               ", 0);
-						}
-						else{
-							PrintXY(55,16, (unsigned char*)" = 0              ", 0);
-						}
-
-					}
-					else{
-						printFloat(37,16,q);
-
-						if(q < 10 && q > -10){
-							printFloat(37,16,q);
-							PrintXY(49,16, (unsigned char*)" = 0               ", 0);
-//	DEBUG for Version 1.2 fix							
-//							locate(4,4);
-//							Print((unsigned char*)"Error");
-						}
-						else{
-							PrintXY(55,16, (unsigned char*)" = 0              ", 0);
-						}
-					}
-				}
-				else{
-				PrintXY(36,16, (unsigned char*)"x  ", 0);
-					if(q >= 0){
-						PrintXY(43,16, (unsigned char*)"+", 0);
-						printFloat(49,16,q);
-						
-						if(q < 10 && q > -10){
-							PrintXY(55,16, (unsigned char*)" = 0               ", 0);
-						}
-						else{
-							PrintXY(61,16, (unsigned char*)" = 0              ", 0);
-						}	
-					}
-					else{
-						printFloat(43,16,q);
-
-						if(q < 10 && q > -10){
-							printFloat(37,16,q);
-							PrintXY(49,16, (unsigned char*)" = 0               ", 0);
-						}
-						else{
-							PrintXY(55,16, (unsigned char*)" = 0              ", 0);
-						}
-					}
-				}
-				
+   				sprintf(buffer, "+%dx+%d = 0   ", p, q);
+    			PrintXY(18,16, buffer, 0);				
 				locate(2,3);
 				Print((unsigned char*)"x");
 				locate(3,3);
@@ -327,152 +201,14 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 
 		}
 	    }
-	
+
 	    if(numberselected==2){
-	 	PrintMini(33,2,(unsigned char*)">>>> HELP <<<<",MINI_OVER);
-		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
-		PrintMini(24,57,(unsigned char*)"Gen",MINI_OVER);
-		PrintMini(43,57,(unsigned char*)"Show",MINI_OVER);
-
-		PrintMini(4,16,(unsigned char*)"Press F2 for generating a ",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"new quadratic equation",MINI_OVER);
-		PrintMini(4,36,(unsigned char*)"Press F3 for showing the",MINI_OVER);
-		PrintMini(4,44,(unsigned char*)"solutions of the equation",MINI_OVER);
-
-		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
-		Bdisp_PutDisp_DD();
-		Sleep(1000);
-		while(1){
-			GetKey(&key);		
-			if(key ==  KEY_CTRL_EXE){
-				selecting = 1;
-				Bdisp_AllClr_DDVRAM();
-				break;
-			}
-
-			if(key ==  KEY_CTRL_F6){
-				selecting = 1;
-				Bdisp_AllClr_DDVRAM();
-				break;
-			}
-
-			if(key ==  KEY_CTRL_F1){
-				selecting = 1;
-				Bdisp_AllClr_DDVRAM();
-				break;
-			}
-
-			if(key ==  KEY_CTRL_EXIT){
-				selecting = 1;
-				Bdisp_AllClr_DDVRAM();
-				break;
-			}
-		}
-	    }
-	
-	    if(numberselected==3){
-	 	PrintMini(23,2,(unsigned char*)">>>> SETTINGS <<<<",MINI_OVER);
-		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
-		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
-
-		renderSettings(currsetingselected, statussetone, statussettwo);
-
-		PrintMini(17,14,(unsigned char*)"SAVE custom USER SEED for",MINI_OVER);
-		PrintMini(17,20,(unsigned char*)"next session.",MINI_OVER);
-
-		PrintMini(17,31,(unsigned char*)"SHOW DEBUG code on the",MINI_OVER);
-		PrintMini(17,37,(unsigned char*)"bottom right.",MINI_OVER);
-		
-		PrintMini(33,57,(unsigned char*)"Setting  1",MINI_OVER);
-
-		Bdisp_PutDisp_DD();
-		Sleep(1000);
-		while(1){
-			GetKey(&key);
-			if(key == KEY_CTRL_DOWN && currsetingselected == 1){
-				currsetingselected = 2;
-			}
-
-			if(key == KEY_CTRL_UP && currsetingselected == 2){
-				currsetingselected = 1;
-			}
-
-			if(key == KEY_CHAR_1){
-				currsetingselected = 1;
-			}
-
-			if(key == KEY_CHAR_2){
-				currsetingselected = 2;
-			}
-
-			if(currsetingselected == 1){
-				locate(1,3);
-	   		 	Print("\xE6\x91");
-				locate(1,5);
-			    	Print("\xE6\xE0");
-			}else if(currsetingselected==2){
-				locate(1,5);
-			    	Print("\xE6\x91");
-				locate(1,3);
-			    	Print("\xE6\xE0");
-			}
-
-			renderSettings(currsetingselected, statussetone, statussettwo);			
-
-			PrintMini(33,57,(unsigned char*)"Setting",MINI_OVER);
-			printminiFloat(67,57,currsetingselected);
-//			printminiFloat(73,57,statussetone);			
-//			printminiFloat(79,57,statussettwo);	
-
-
-			if(key ==  KEY_CTRL_EXE){
-				if(currsetingselected == 1 && statussetone == 0){
-					statussetone = 1;
-				}else if(currsetingselected == 1 && statussetone == 1){
-					statussetone = 0;
-				}
-				if(currsetingselected == 2 && statussettwo == 0){
-					statussettwo = 1;
-				}else if(currsetingselected == 2 && statussettwo == 1){
-					statussettwo = 0;
-				}
-				renderSettings(currsetingselected, statussetone, statussettwo);	
-			}
-
-			if(key ==  KEY_CTRL_F6){
-				if(currsetingselected == 1 && statussetone == 0){
-					statussetone = 1;
-				}else if(currsetingselected == 1 && statussetone == 1){
-					statussetone = 0;
-				}
-				if(currsetingselected == 2 && statussettwo == 0){
-					statussettwo = 1;
-				}else if(currsetingselected == 2 && statussettwo == 1){
-					statussettwo = 0;
-				}
-				renderSettings(currsetingselected, statussetone, statussettwo);	
-			}
-
-			if(key ==  KEY_CTRL_F1){
-				selecting = 1;
-				Bdisp_AllClr_DDVRAM();
-				break;
-			}
-
-			if(key ==  KEY_CTRL_EXIT){
-				selecting = 1;
-				Bdisp_AllClr_DDVRAM();
-				break;
-			}
-		}
-	    }
-
-	    if(numberselected==4){
 	 	PrintMini(29,2,(unsigned char*)">>>> Version <<<<",MINI_OVER);
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"Version 1.4.1",MINI_OVER);
+		PrintMini(4,30,(unsigned char*)"Version 1.0",MINI_OVER);
+		PrintMini(4,44,(unsigned char*)"Performance Edition",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){

@@ -22,7 +22,7 @@ Open Quadgen by scrolling to the symbol and pressing [EXE].<br>
 <br>
 
 # Menu
-Use [1] or [2] or [3] for selecting in the menu.<br>
+Use [1] or [2] for selecting in the menu.<br>
 Then press [EXE] to confirm.<br>
 Exit with [F1]. (If you use Exit you have to start another menu on<br>
 the calculator and the start Quadgen to restart the application <br>
@@ -36,18 +36,10 @@ Use [F2] for generating a new equation.<br>
 Use [F3] to show the solutions of the equation.<br>
 <br>
 
-# HELP
-Use [2] and [EXE] for the HELP menu.<br>
-Use [F1] to exit.<br>
-Displays all information for the use of the generator.<br>
-<br>
-
 # Version
-Use [3] and [EXE] for the Version menu.<br>
+Use [2] and [EXE] for the Version menu.<br>
 Use [F1] or [F6] to exit.<br>
 <br>
-
-for a more detailed guide with images see quadgen_manual.pdf
 
 ## Changelog
 V == Version<br>
@@ -57,35 +49,5 @@ V == Version<br>
 
 ### V 1.0
 Initial version <br>
+decrease file size of .g1a to 16.196 Bytes(normal 17.796 Bytes V 1.4.1)
 <br>
-
-### V 1.1
-fix display bug when q is 0<br>
-<br>
-
-### V 1.2
-fix display bug when N1 or N2 is negative and one of them is 1<br>
-<br>
-
-### V 1.3
-fix display bug when q is more than one character<br>
-<br>
-
-### V 1.3.1
-display only one soloution when they are the same<br>
-<br>
-
-### V 1.3.2
-Remove Monochromelib<br>
-rename variable numerselected to numberselected<br>
-<br>
-
-### V 1.4.0
-display variables as integers<br>
-let users choose the seed by their own -> fix issue<br> 
-<br>
-
-### V 1.4.1
-add settings menu<br>
-<br>
-

@@ -10,34 +10,52 @@
 #include "fxlib.h"
 #include <stdio.h>
 
-void printFloat(int x, int y, int f){
+void printInt(int x, int y, int f){
     unsigned char buffer[9];
     sprintf(buffer, "%d", f);
     PrintXY(x,y, buffer, 0);
-//    PrintMini(x,y, buffer, MINI_OVER);
 }
 
 void printminiFloat(int x, int y, int f){
     unsigned char buffer[9];
     sprintf(buffer, "%d", f);
-//    PrintXY(x,y, buffer, 0);
     PrintMini(x,y, buffer, MINI_OVER);
 }
 
 void orientateSeed(seed){
 	PrintXY(100,32, "           ", 0);
 	if(seed >= 100){
-		printFloat(102,32,seed);
+		printInt(102,32,seed);
 	}else if(seed >= 10){
-		printFloat(105,32,seed);
+		printInt(105,32,seed);
 	}else if(seed < 10 && seed >=0 ){		
-		printFloat(108,32,seed);
+		printInt(108,32,seed);
 	}else if(seed <= -100){		
-		printFloat(96,32,seed);
+		printInt(96,32,seed);
 	}else if(seed <= -10){		
-		printFloat(99,32,seed);
+		printInt(99,32,seed);
 	}else if(seed < 0){		
-		printFloat(102,32,seed);
+		printInt(102,32,seed);
+	}
+}
+
+void renderhelp(int helppage){
+	PrintMini(89,2,(unsigned char*)"Page",MINI_OVER);
+	printminiFloat(110, 2, helppage);
+	if(helppage == 1){
+		PrintMini(4,16,(unsigned char*)"Press F2 for generating a    ",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"new quadratic equation       ",MINI_OVER);
+		PrintMini(4,36,(unsigned char*)"Press F3 for showing the     ",MINI_OVER);
+		PrintMini(4,44,(unsigned char*)"solutions of the equation    ",MINI_OVER);
+		PrintMini(95,57,(unsigned char*)"->",MINI_OVER);
+		PrintMini(74,57,(unsigned char*)"  ",MINI_OVER);
+	}else if(helppage == 2){
+		PrintMini(4,16,(unsigned char*)"Use UP and DOWN for          ",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"changing the seed +1 or -1   ",MINI_OVER);
+		PrintMini(4,36,(unsigned char*)"Use LEFT and RIGHT for       ",MINI_OVER);
+		PrintMini(4,44,(unsigned char*)"changing the seed +10 or -10 ",MINI_OVER);
+		PrintMini(74,57,(unsigned char*)"<-",MINI_OVER);
+		PrintMini(95,57,(unsigned char*)"   ",MINI_OVER);
 	}
 }
 
@@ -62,6 +80,7 @@ void renderSettings(int currsetingselected, int statussetone, int statussettwo){
 int savedata(int statussetone, int statussettwo, int seed, int file, FONTCHARACTER*PathName){
 	   char save_data[30];
 
+	   Bfile_DeleteFile(PathName);
 	   Bfile_CreateFile(PathName, 30);
 	   file = Bfile_OpenFile(PathName, _OPENMODE_WRITE);
 
@@ -76,7 +95,7 @@ void readdata(int statussetone, int statussettwo, int seed, int file, FONTCHARAC
 	   char buffer[30];
 
 	   file = Bfile_OpenFile(PathName, _OPENMODE_READ);
-	   Bfile_ReadFile(file, read_data, 30, 0);
+	   Bfile_ReadFile(file, &read_data, 30, 0);
 
 //	   sprintf(buffer, "%d", read_data);
 //	   PrintMini(35, 57, buffer, MINI_OVER);
@@ -91,6 +110,45 @@ void readdata(int statussetone, int statussettwo, int seed, int file, FONTCHARAC
 //	   }
 
 	   Bfile_CloseFile(file);
+}
+
+void displaydebugcode(int x, int y, int statussetone, int statussettwo, int file, FONTCHARACTER*PathName){
+	   unsigned  char read_data[30];
+
+	   Bdisp_SetPoint_DDVRAM(x-2,y-2,1);
+	   Bdisp_SetPoint_DDVRAM(x+4,y-2,1);
+	   Bdisp_SetPoint_DDVRAM(x+4,y+4,1);
+	   Bdisp_SetPoint_DDVRAM(x-2,y+4,1);
+
+	   if(Bfile_ReadFile(file, &read_data, 30, 0)>=0){
+			Bdisp_SetPoint_DDVRAM(x,y,1);
+	   }else{
+			Bdisp_SetPoint_DDVRAM(x,y,0);
+	   }
+
+	   if(Bfile_OpenFile(PathName, _OPENMODE_WRITE)>=0){
+			Bdisp_SetPoint_DDVRAM(x+1,y,1);
+	   }else{
+			Bdisp_SetPoint_DDVRAM(x+1,y,0);
+	   }
+
+	   if(Bfile_ReadFile(file, &read_data, 30, 0)>=0){
+			Bdisp_SetPoint_DDVRAM(x+2,y,1);
+	   }else{
+			Bdisp_SetPoint_DDVRAM(x+2,y,0);
+	   }
+
+	   if(statussetone==1){
+			Bdisp_SetPoint_DDVRAM(x,y+2,1);
+	   }else{
+			Bdisp_SetPoint_DDVRAM(x,y+2,0);
+	   }
+
+	   if(statussettwo==1){
+			Bdisp_SetPoint_DDVRAM(x+1,y+2,1);
+	   }else{
+			Bdisp_SetPoint_DDVRAM(x+1,y+2,0);
+	   }
 }
 
 //****************************************************************************
@@ -113,6 +171,8 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
     int running = 1;
     int numberselected = 1;
 
+	int helppage = 1;
+
     int currsetingselected = 1;
     int statussetone = 0;
     int statussettwo = 0;
@@ -123,6 +183,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
     int p = 0;
     int q = 0;
     char buffer[12];
+
     int file;
 
     Bdisp_AllClr_DDVRAM();
@@ -139,6 +200,10 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	   PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 	   PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);	   
 	   readdata(statussetone, statussettwo, seed, file, PathName);
+	   if(statussettwo==1){
+			displaydebugcode(90, 30, statussetone, statussettwo, file, PathName);
+	   }
+
 	   Bdisp_PutDisp_DD();
 	   while(selecting==1){
 	
@@ -211,7 +276,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		if(key == KEY_CTRL_EXIT){
 			return 1;
 		}
-	// for DEBUG: printFloat(50,25,numberselected);
+	// for DEBUG: printInt(50,25,numberselected);
 	
 	   };
 	
@@ -223,6 +288,8 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(24,57,(unsigned char*)"Gen",MINI_OVER);
 		PrintMini(43,57,(unsigned char*)"Show",MINI_OVER);
+		PrintMini(89,57,(unsigned char*)"SAVE",MINI_OVER);
+		
 		locate(19,4);
 	    	Print("\xE6\x9C");
 		locate(19,6);
@@ -233,10 +300,18 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		while(1){
 			GetKey(&key);
 
+			if(statussettwo==1){
+				displaydebugcode(90, 30, statussetone, statussettwo, file, PathName);
+	  		}
+
 			if(key ==  KEY_CTRL_F1){
 				selecting = 1;
 				Bdisp_AllClr_DDVRAM();
 				break;
+			}
+
+			if(key ==  KEY_CTRL_F5){
+				savedata(statussetone, statussettwo, seed, file, PathName);
 			}
 			
 			if(key ==  KEY_CTRL_EXIT){
@@ -261,8 +336,8 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				seed = seed + 10;
 			}
 
-			if(statussetone==1){
-					savedata(statussetone, statussettwo, seed, file, PathName);
+			if(statussetone == 1){
+				savedata(statussetone, statussettwo, seed, file, PathName);
 			}
 
 			orientateSeed(seed);
@@ -275,8 +350,8 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				p = (nullone + nulltwo)*(-1);
 				q = (nullone * nulltwo);
 				
-//for DEBUG:	printFloat(50,15,nullone);
-//for DEBUG:	printFloat(50,25,nulltwo);
+//for DEBUG:	printInt(50,15,nullone);
+//for DEBUG:	printInt(50,25,nulltwo);
 
 				PrintXY(1,40, (unsigned char*)"                                                                          ", 0);
 				if(p >= 0 && q >= 0){
@@ -289,7 +364,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 					sprintf(buffer, "%dx%d = 0   ", p, q);
 				}
 				
-    			PrintXY(18,16, buffer, 0);	
+    				PrintXY(18,16, buffer, 0);	
 				
 				locate(2,3);
 				Print((unsigned char*)"x");
@@ -297,11 +372,14 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				Print("\xE5\xC2");
 				
 				seed = seed +1;
+				if(statussetone == 1){
+					savedata(statussetone, statussettwo, seed, file, PathName);
+				}
 			}
 
 			if(key ==  KEY_CTRL_F3){
-				printFloat(6,40,nullone);
-				printFloat(50,40,nulltwo);
+				printInt(6,40,nullone);
+				printInt(50,40,nulltwo);
 
 				if(nullone==nulltwo){
 					PrintXY(50,40, (unsigned char*)"                                      ", 0);
@@ -315,19 +393,14 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 
 		}
 	    }
-	
+
 	    if(numberselected==2){
-	 	PrintMini(33,2,(unsigned char*)">>>> HELP <<<<",MINI_OVER);
+	 	PrintMini(15,2,(unsigned char*)">>>> HELP <<<<",MINI_OVER);
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(24,57,(unsigned char*)"Gen",MINI_OVER);
 		PrintMini(43,57,(unsigned char*)"Show",MINI_OVER);
-
-		PrintMini(4,16,(unsigned char*)"Press F2 for generating a ",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"new quadratic equation",MINI_OVER);
-		PrintMini(4,36,(unsigned char*)"Press F3 for showing the",MINI_OVER);
-		PrintMini(4,44,(unsigned char*)"solutions of the equation",MINI_OVER);
-
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
+		renderhelp(helppage);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);
 		while(1){
@@ -355,6 +428,15 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				Bdisp_AllClr_DDVRAM();
 				break;
 			}
+
+			if(helppage == 1 && key == KEY_CTRL_F5 || helppage == 1 && key == KEY_CTRL_RIGHT){
+				helppage = 2;
+			}else if(helppage == 2 && KEY_CTRL_F4 || helppage == 2 && key == KEY_CTRL_LEFT){
+				helppage = 1;
+			}
+
+			renderhelp(helppage);
+
 		}
 	    }
 	
@@ -362,12 +444,11 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 	 	PrintMini(23,2,(unsigned char*)">>>> SETTINGS <<<<",MINI_OVER);
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
-//		PrintMini(89,57,(unsigned char*)"SAVE",MINI_OVER);
 
 		renderSettings(currsetingselected, statussetone, statussettwo);
 
-		PrintMini(17,14,(unsigned char*)"USE saved USER SEED from",MINI_OVER);
-		PrintMini(17,20,(unsigned char*)"last session.",MINI_OVER);
+		PrintMini(17,14,(unsigned char*)"Autosaving",MINI_OVER);
+		PrintMini(17,20,(unsigned char*)"seed and settings",MINI_OVER);
 
 		PrintMini(17,31,(unsigned char*)"SHOW DEBUG code on the",MINI_OVER);
 		PrintMini(17,37,(unsigned char*)"bottom right.",MINI_OVER);
@@ -444,10 +525,6 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 				savedata(statussetone, statussettwo, seed, file, PathName);	
 			}
 
-//			if(key ==  KEY_CTRL_F5){
-//				savedata(statussetone, statussettwo, seed, file, PathName);
-//			}
-
 			if(key ==  KEY_CTRL_F1){
 				selecting = 1;
 				Bdisp_AllClr_DDVRAM();
@@ -467,7 +544,7 @@ int AddIn_main(int isAppli, unsigned short OptionNum)
 		PrintMini(2,57,(unsigned char*)"Exit",MINI_OVER);
 		PrintMini(115,57,(unsigned char*)"EXE",MINI_OVER);
 		PrintMini(4,16,(unsigned char*)"(c) 2022 Felix Wittwer",MINI_OVER);
-		PrintMini(4,24,(unsigned char*)"Version 1.4.3",MINI_OVER);
+		PrintMini(4,24,(unsigned char*)"Version 1.4.4",MINI_OVER);
 		PrintMini(4,32,(unsigned char*)"Professional Edition",MINI_OVER);
 		Bdisp_PutDisp_DD();
 		Sleep(1000);

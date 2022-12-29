@@ -101,9 +101,11 @@ settingone settingtwo seed<br>
 
 **V 1.4.3**<br>
 simplify generator<br>
+read data from file<br>
 <br>
 
 **V 1.4.4**<br>
 add debugcode<br>
 add multipage help<br>
+rename functions that display variables<br>
 <br>

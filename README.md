@@ -102,4 +102,5 @@ settingone settingtwo seed<br>
 **V 1.4.3**<br>
 read data from file<br>
 simplify generator<br>
+rename functions that display variables<br>
 <br>

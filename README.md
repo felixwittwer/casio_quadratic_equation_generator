@@ -100,6 +100,10 @@ settingone settingtwo seed<br>
 <br>
 
 **V 1.4.3**<br>
+simplify generator<br>
+<br>
+
+**V 1.4.4**<br>
 add debugcode<br>
 add multipage help<br>
 <br>

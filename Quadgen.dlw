@@ -3,9 +3,9 @@
 [_1]
 Type=5
 Order=2
-Top=15
+Top=0
 Left=2235
-Height=4740
+Height=4755
 Width=5565
 State=0
 Flags=00000020
@@ -122,5 +122,5 @@ Height=19935
 Width=11670
 State=0
 Flags=00000020
-Setting=366:5:Quadgen.c
+Setting=76:1:Quadgen.c
 OptionA=0

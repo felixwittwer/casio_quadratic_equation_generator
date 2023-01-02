@@ -5,7 +5,7 @@
 [BINDATA]    : "FXADDINror.bin"
 [DISPNAME]   : "Quadgen"
 [APPNAME]    : "@QUADGEN"
-[VERSION]    : "01.00.0000"
+[VERSION]    : "1.4.4000"
 [APL_ICON]   : "MainIcon.bmp"
 [MODULE_NUM] : 0
 [MOD1_TITLE] : "Quadgen"

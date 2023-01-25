@@ -1,4 +1,4 @@
-### casio_quadratic_equation_generator only for Casio fx-9860 GIII or GII
+### casio_quadratic_equation_generator only for Casio fx-9860 GIII or GII ![MainIcon](MainIcon.bmp)
 A generator for practicing solving quadratic equations
 
 Now in two editions available
